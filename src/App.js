@@ -1,7 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 function App() {
-  return <div>Hey</div>
+  const [count, setCount] = useState(10)
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <div>{count}</div>
+    </div>
+  )
 }
 
 export default App
