@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
     console.log('render')
-  })
+  }, [values.password])
 
   return (
     <div>
