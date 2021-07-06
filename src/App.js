@@ -1,29 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useForm } from './useForm.js';
 
 function App() {
   const [values, handleChange] = useForm({ email: '', password: '' });
-
-  useEffect(() => {
-    const onMouseMove = e => {
-      console.log(e);
-    };
-    window.addEventListener('mousemove', onMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-    };
-  }, []);
+  const inputRef = useRef()
 
   return (
     <div>
-      <input name='email' value={values.email} onChange={handleChange} />
+      <input name='email' ref={inputRef} value={values.email} onChange={handleChange} />
       <input
         type='password'
         name='password'
         value={values.password}
         onChange={handleChange}
       />
+      <button onClick={() => {
+        console.log(inputRef)
+      }}>Focus</button>
     </div>
   );
 }
