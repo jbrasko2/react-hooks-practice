@@ -24,8 +24,9 @@ export default function App() {
   );
 }
 
+// slowFunction runs every time state changes because the whole component is rerendered.
 function slowFunction(num) {
   console.log('Calling Slow Function');
-  for (let i = 0; i >= 1000000000; i++) {}
+  for (let i = 0; i <= 1000000000; i++) {}
   return num * 2;
 }
