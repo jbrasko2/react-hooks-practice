@@ -15,6 +15,9 @@ export default function App() {
     };
   }, [dark]);
 
+  // this useEffect creates a new themeStyles object on rerender
+  // that is not equal to the old themeStyles
+  // we use useMemo above to only update the themeStyles reference when the content changes
   useEffect(() => {
     console.log('Theme Changed');
   }, [themeStyles]);
