@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 export default function App() {
   const [number, setNumber] = useState(0);
   const [dark, setDark] = useState(false);
-  const doubleNumber = slowFunction(number);
+  // When the component rerenders, useMemo looks at the depenency to see if it has changed,
+  // If it hasn't, it does not run slowFunction
+  const doubleNumber = useMemo(() => {
+    return slowFunction(number);
+  }, [number]);
   const themeStyles = {
     backgroundColor: dark ? 'black' : 'white',
     color: dark ? 'white' : 'black',
