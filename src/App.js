@@ -15,7 +15,7 @@ function App() {
         onChange={handleChange}
       />
       <button onClick={() => {
-        console.log(inputRef)
+        inputRef.current.focus()
       }}>Focus</button>
     </div>
   );
