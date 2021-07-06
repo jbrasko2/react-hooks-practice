@@ -1,24 +1,31 @@
-import React, { useEffect, useRef } from 'react';
-import { useForm } from './useForm.js';
+import React, { useState } from 'react';
 
-function App() {
-  const [values, handleChange] = useForm({ email: '', password: '' });
-  const inputRef = useRef()
+export default function App() {
+  const [number, setNumber] = useState(0);
+  const [dark, setDark] = useState(false);
+  const doubleNumber = slowFunction(number);
+  const themeStyles = {
+    backgroundColor: dark ? 'black' : 'white',
+    color: dark ? 'white' : 'black',
+  };
 
   return (
-    <div>
-      <input name='email' ref={inputRef} value={values.email} onChange={handleChange} />
+    <>
       <input
-        type='password'
-        name='password'
-        value={values.password}
-        onChange={handleChange}
+        type='number'
+        value={number}
+        onChange={e => setNumber(parseInt(e.target.value))}
       />
-      <button onClick={() => {
-        inputRef.current.focus()
-      }}>Focus</button>
-    </div>
+      <button onClick={() => setDark(prevDark => !prevDark)}>
+        Change Theme
+      </button>
+      <div style={themeStyles}>{doubleNumber}</div>
+    </>
   );
 }
 
-export default App;
+function slowFunction(num) {
+  console.log('Calling Slow Function');
+  for (let i = 0; i >= 1000000000; i++) {}
+  return num * 2;
+}
